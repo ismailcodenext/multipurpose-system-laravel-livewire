@@ -15,6 +15,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('backend/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{asset('backend/plugins/toastr/toastr.min.css')}}">
+
+    @livewireStyles
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -28,7 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        @yield('content')
+        {{$slot}}
     </div>
     <!-- /.content-wrapper -->
 
@@ -52,9 +55,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- jQuery -->
 <script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
-<script src="{{asset('backend/ugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('backend/st/js/adminlte.min.js')}}"></script>
+<script src="{{asset('backend/dist/js/adminlte.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('backend/plugins/toastr/toastr.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        toastr.option = {
+            "positionClass": "toast-top-right",
+            "progressBar":true,
+        }
+
+        window.addEventListener('hide-form', event=> {
+            $('#userForm').modal('hide');
+            toastr.success(event.detail.message, 'Success!');
+        })
+    });
+</script>
+<script>
+
+        window.addEventListener('show-form', event => {
+            $('#userForm').modal('show');
+        })
+
+
+</script>
+
+@livewireScripts
 </body>
 </html>
 
