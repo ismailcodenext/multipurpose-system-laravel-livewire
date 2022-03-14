@@ -44,7 +44,7 @@
                                         <a href="" wire:click.prevent="edit({{ $user }})">
                                             <i class="fa fa-edit mr-2"></i>
                                         </a>
-                                        <a href="">
+                                        <a href="" wire:click.prevent="confirmUserRemoval({{ $user->id }})">
                                             <i class="fa fa-trash text-danger"></i>
                                         </a>
                                     </td>
@@ -67,7 +67,7 @@
     <!-- Modal -->
     <div class="modal fade" id="userForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog">
-            <form autocomplete="off" wire:submit.prevent="{{$showEditModal ? 'updateUser' : 'createUser'}}">
+            <form autocomplete="off" wire:submit.prevent="{{$showEditModal ? 'updateUser' : 'creatUser'}}">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
@@ -134,6 +134,29 @@
                 </form>
             </div>
         </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+         wire:ignore.self>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Delete User</h5>
+                </div>
+
+                <div class="modal-body">
+                    <h4>Are you want to delete user?</h4>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i> Cancle</button>
+                    <button type="submit" wire:click.prevent="deleteUser" class="btn btn-danger"> <i class="fa fa-trash mr-2">Delete User</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
 </div>
