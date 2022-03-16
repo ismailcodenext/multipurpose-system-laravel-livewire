@@ -19,7 +19,8 @@ Route::get('/', function () {
 
 
 Route::get('/admin/users', \App\Http\Livewire\Admin\Users\ListUser::class)->name('admin.users');
-
+Route::get('admin/appointments', \App\Http\Livewire\Admin\Appoinments\ListAppoinments::class)->name('admin.appointments');
+Route::get('admin/appointments/create', \App\Http\Livewire\Admin\Appointments\CreateAppointmentForm::class)->name('admin.appointments.create');
 
 Route::get('admin/dashboard', \App\Http\Controllers\Admin\DashboardController::Class)->name('admin.dashboard');
 
