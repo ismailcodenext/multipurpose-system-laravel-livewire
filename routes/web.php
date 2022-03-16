@@ -17,5 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/admin/users', \App\Http\Livewire\Admin\Users\ListUser::class)->name('admin.users');
+
+
 Route::get('admin/dashboard', \App\Http\Controllers\Admin\DashboardController::Class)->name('admin.dashboard');
-Route::get('admin/users', \App\Http\Livewire\Admin\Users\ListUsers::class)->name('admin.users');
+

@@ -55,6 +55,9 @@
 
 
                         </div>
+                        <div class="card-footer d-flex justify-content-end">
+                            {{$users->links()}}
+                        </div>
                     </div>
 
                 </div>
@@ -77,8 +80,8 @@
                             <span>Add New User</span>
                         @endif
                     </h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-                        <i class="fa fa-times"></i>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
