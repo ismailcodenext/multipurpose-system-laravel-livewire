@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(' client_id')->constrained();
-            $table->date(' date');
+            $table->foreignId('client_id')->constrained();
+            $table->date('date');
             $table->time('time');
             $table->string('status');
             $table->text('note')->nullable();

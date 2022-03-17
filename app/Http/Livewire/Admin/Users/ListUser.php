@@ -34,7 +34,9 @@ class ListUser extends Component
         return view('livewire.admin.users.list-users', [
             'users' => $users,
         ]);
-    }public function creatUser()
+    }
+
+    public function creatUser()
     {
 
 

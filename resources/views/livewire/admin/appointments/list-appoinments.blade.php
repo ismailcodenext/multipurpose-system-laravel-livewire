@@ -36,17 +36,19 @@
                                     <th scope="col">Date</th>
                                     <th scope="col">Time</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Note</th>
                                     <th scope="col">Options</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-
+                                @foreach($appointments as $appointment)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Client Name</td>
-                                    <td>Date</td>
-                                    <td>Time</td>
-                                    <td>Status</td>
+                                    <th scope="row">{{$loop->iteration}}</th>
+                                    <td>{{$appointment->client_id}}</td>
+                                    <td>{{$appointment->date}}</td>
+                                    <td>{{$appointment->time}}</td>
+                                    <td>{{$appointment->status}}</td>
+                                    <td>{{$appointment->note}}</td>
                                     <td>
                                         <a href="">
                                             <i class="fa fa-edit mr-2"></i>
@@ -56,6 +58,7 @@
                                         </a>
                                     </td>
                                 </tr>
+                                @endforeach
                                 </tbody>
                             </table>
 
