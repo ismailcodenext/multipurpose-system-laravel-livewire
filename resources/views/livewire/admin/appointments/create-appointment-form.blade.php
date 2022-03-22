@@ -56,58 +56,60 @@
                                 </div>
 
 
+{{--                                <div class="row">--}}
+{{--                                    <div class="col-md-6">--}}
+{{--                                        <div class="form-group">--}}
+{{--                                            <label for="appointmentStartTime">Appointment Start Time:</label>--}}
+{{--                                            <div class="input-group mb-3">--}}
+{{--                                                <div class="input-group-prepend">--}}
+{{--                                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>--}}
+{{--                                                </div>--}}
+{{--                                                <x-timepicker wire:model.defer="state.appointment_start_time" id="appointmentStartTime" />--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
+{{--                                    <div class="col-md-6">--}}
+{{--                                        <div class="form-group">--}}
+{{--                                            <label for="appointmentEndTime">Appointment End Time:</label>--}}
+{{--                                            <div class="input-group mb-3">--}}
+{{--                                                <div class="input-group-prepend">--}}
+{{--                                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>--}}
+{{--                                                </div>--}}
+{{--                                                <x-timepicker wire:model.defer="state.appointment_end_time" id="appointmentEndTime" />--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Date:</label>
-                                            <div class="input-group date" id="appointmentDate"
-                                                 data-target-input="nearest" data-appointmentdate="@this">
-                                                <input wire:model.defer="state.date" type="text"
-                                                       class="form-control datetimepicker-input"
-                                                       data-target="#appointmentDate" id="appointmentDateInput">
-                                                <div class="input-group-append" data-target="#appointmentDate"
-                                                     data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            <label for="appointmentDate">Appointment Date:</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Appointment Time:</label>
-                                            <div wire:ignore class="input-group date" id="appointmentTime"
-                                                 data-target-input="nearest" data-appointmenttime="@this">
-                                                <input type="text" class="form-control datetimepicker-input"
-                                                       data-target="#appointmentTime" id="appointmentTimeInput">
-                                                <div class="input-group-append" data-target="#appointmentTime"
-                                                     data-toggle="datetimepicker">
-                                                    <div class="input-group-text">
-                                                        <i class="far fa-clock"></i>
-                                                    </div>
-                                                </div>
+                                                <x-datepicker wire:model.defer="state.date" id="appointmentDate" />
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Appointment End Time:</label>
-                                            <div wire:ignore class="input-group date" id="appointmentTime"
-                                                 data-target-input="nearest" data-appointmenttime="@this">
-                                                <input type="text" class="form-control datetimepicker-input"
-                                                       data-target="#appointmentTime" id="appointmentTimeInput">
-                                                <div class="input-group-append" data-target="#appointmentTime"
-                                                     data-toggle="datetimepicker">
-                                                    <div class="input-group-text">
-                                                        <i class="far fa-clock"></i>
-                                                    </div>
+                                            <label for="appointmentTime">Appointment Time:</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                                 </div>
+                                                <x-timepicker wire:model.defer="state.time" id="appointmentTime" />
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
+
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div wire:ignore class="form-group">
@@ -133,32 +135,6 @@
     </div>
 
     @push('js')
-        <script>
-            $(document).ready(function () {
-                $('#appointmentDate').datetimepicker({
-                    format: 'L',
-                });
-
-                $('#appointmentDate').on("change.datetimepicker", function (e) {
-                    let date = $(this).data('appointmentdate');
-                    eval(date).set('state.date', $('#appointmentDateInput').val());
-                });
-
-                $('#appointmentTime').datetimepicker({
-                    format: 'LT',
-                });
-
-                $('#appointmentTime').on("change.datetimepicker", function (e) {
-                    let time = $(this).data('appointmenttime');
-                    eval(time).set('state.time', $('#appointmentTimeInput').val());
-                });
-
-                $('#appointmentTime').on("change.datetimepicker", function (e) {
-                    let time = $(this).data('appointmenttime');
-                    eval(time).set('state.time', $('#appointmentTimeInput').val());
-                });
-            });
-        </script>
 
         <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
         <script>
