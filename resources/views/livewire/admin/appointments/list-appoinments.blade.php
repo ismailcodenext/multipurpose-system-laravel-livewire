@@ -44,7 +44,7 @@
                                 @foreach($appointments as $appointment)
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
-                                    <td>{{$appointment->client_id}}</td>
+                                    <td>{{$appointment->client->name}}</td>
                                     <td>{{$appointment->date}}</td>
                                     <td>{{$appointment->time}}</td>
                                     <td>{{$appointment->status}}</td>

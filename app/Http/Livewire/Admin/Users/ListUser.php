@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Users;
 
+use Illuminate\Database\Query\Builder;
 use Livewire\Component;
 
 
@@ -13,6 +14,9 @@ use Livewire\WithPagination;
 class ListUser extends Component
 {
     use WithPagination;
+
+    public $perPage = 10;
+    public $search = '';
     protected $paginationTheme = 'bootstrap';
     public $state = [];
     public $user;
@@ -26,11 +30,16 @@ class ListUser extends Component
     }
 
 
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
 
-        $users = User::latest()->paginate(5);
+        $users =  User::search($this->search)->with('clients')->orderBy('id')->paginate(5);
+
         return view('livewire.admin.users.list-users', [
             'users' => $users,
         ]);
@@ -92,10 +101,8 @@ class ListUser extends Component
     {
         $user = User::findOrFail($this->userIdBeingRemoved);
         $user->delete();
-        $this->dispatchBrowserEvent('hide-delete-modal', [ 'message' => 'User Deleted Successfully!']);
+        $this->dispatchBrowserEvent('hide-delete-modal', ['message' => 'User Deleted Successfully!']);
     }
-
-
 
 
 }
