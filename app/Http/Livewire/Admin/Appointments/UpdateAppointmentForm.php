@@ -2,20 +2,24 @@
 
 namespace App\Http\Livewire\Admin\Appointments;
 
-
 use App\Models\Appointments;
 use App\Models\Client;
-
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
-class CreateAppointmentForm extends Component
+class UpdateAppointmentForm extends Component
 {
-    public $state = [
-        'status' => 'SCHEDULED',
-    ];
+    public $state = [];
 
-    public function createAppointment()
+    public $appointment;
+
+    public function mount(Appointments $appointment)
+    {
+        $this->state = $appointment->toArray();
+        $this->appointment = $appointment;
+    }
+
+    public function updateAppointment()
     {
         Validator::make($this->state, [
             'client_id' => 'required',
@@ -26,14 +30,15 @@ class CreateAppointmentForm extends Component
         ], ['client_id.required' => 'The client field is required'])->validate();
 
 //        $this->state['status'] = 'open';
-        Appointments::create($this->state);
+       $this->appointment->update($this->state);
 
-        $this->dispatchBrowserEvent('alert', ['message' => 'Appointment created successfully!']);
+        $this->dispatchBrowserEvent('alert', ['message' => 'Appointment updated successfully!']);
     }
+
     public function render()
     {
         $clients = Client::all();
-        return view('livewire.admin.appointments.create-appointment-form', [
+        return view('livewire.admin.appointments.update-appointment-form', [
             'clients' => $clients,
         ]);
     }

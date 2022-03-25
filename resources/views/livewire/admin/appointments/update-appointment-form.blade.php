@@ -19,7 +19,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form wire:submit.prevent="createAppointment" autocomplete="off">
+                    <form wire:submit.prevent="updateAppointment" autocomplete="off">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Add New Appointment</h3>
@@ -45,31 +45,31 @@
                                 </div>
 
 
-{{--                                <div class="row">--}}
-{{--                                    <div class="col-md-6">--}}
-{{--                                        <div class="form-group">--}}
-{{--                                            <label for="appointmentStartTime">Appointment Start Time:</label>--}}
-{{--                                            <div class="input-group mb-3">--}}
-{{--                                                <div class="input-group-prepend">--}}
-{{--                                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>--}}
-{{--                                                </div>--}}
-{{--                                                <x-timepicker wire:model.defer="state.appointment_start_time" id="appointmentStartTime" />--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
+                                {{--                                <div class="row">--}}
+                                {{--                                    <div class="col-md-6">--}}
+                                {{--                                        <div class="form-group">--}}
+                                {{--                                            <label for="appointmentStartTime">Appointment Start Time:</label>--}}
+                                {{--                                            <div class="input-group mb-3">--}}
+                                {{--                                                <div class="input-group-prepend">--}}
+                                {{--                                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>--}}
+                                {{--                                                </div>--}}
+                                {{--                                                <x-timepicker wire:model.defer="state.appointment_start_time" id="appointmentStartTime" />--}}
+                                {{--                                            </div>--}}
+                                {{--                                        </div>--}}
+                                {{--                                    </div>--}}
 
-{{--                                    <div class="col-md-6">--}}
-{{--                                        <div class="form-group">--}}
-{{--                                            <label for="appointmentEndTime">Appointment End Time:</label>--}}
-{{--                                            <div class="input-group mb-3">--}}
-{{--                                                <div class="input-group-prepend">--}}
-{{--                                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>--}}
-{{--                                                </div>--}}
-{{--                                                <x-timepicker wire:model.defer="state.appointment_end_time" id="appointmentEndTime" />--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                {{--                                    <div class="col-md-6">--}}
+                                {{--                                        <div class="form-group">--}}
+                                {{--                                            <label for="appointmentEndTime">Appointment End Time:</label>--}}
+                                {{--                                            <div class="input-group mb-3">--}}
+                                {{--                                                <div class="input-group-prepend">--}}
+                                {{--                                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>--}}
+                                {{--                                                </div>--}}
+                                {{--                                                <x-timepicker wire:model.defer="state.appointment_end_time" id="appointmentEndTime" />--}}
+                                {{--                                            </div>--}}
+                                {{--                                        </div>--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
 
 
                                 <div class="row">
@@ -82,11 +82,11 @@
                                                 </div>
                                                 <x-datepicker wire:model.defer="state.date" id="appointmentDate"
                                                               :error="'date'" />
-                                                                @error('date')
-                                                                <div class="invalid-feedback">
-                                                                    {{ $message }}
-                                                                </div>
-                                                                @enderror
+                                                @error('date')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +115,7 @@
                                         <div wire:ignore class="form-group">
                                             <label for="note">Note:</label>
                                             <textarea id="note" data-note="@this" wire:model.defer="state.note"
-                                                      class="form-control"></textarea>
+                                                      class="form-control">{!! $state['note'] !!}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -127,8 +127,8 @@
                                             <select class="form-control @error('status') is-invalid @enderror" wire:model.defer="state.status" >
                                                 <option value="">Select Status</option>
 
-                                                    <option value="SCHEDULED">SCHEDULED</option>
-                                                    <option value="CLOSED">CLOSED</option>
+                                                <option value="SCHEDULED">SCHEDULED</option>
+                                                <option value="CLOSED">CLOSED</option>
 
                                             </select>
                                             @error('status')
@@ -145,7 +145,7 @@
                                 <button type="button" class="btn btn-secondary"><i class="fa fa-times mr-1"></i> Cancel
                                 </button>
                                 <button type="submit" id="submit" class="btn btn-primary"><i
-                                        class="fa fa-save mr-1"></i> Save
+                                        class="fa fa-save mr-1"></i> Save Changes
                                 </button>
                             </div>
                         </div>
@@ -178,3 +178,4 @@
     @endpush
 
 </div>
+

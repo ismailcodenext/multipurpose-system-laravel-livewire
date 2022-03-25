@@ -45,12 +45,14 @@
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
                                     <td>{{$appointment->client->name}}</td>
-                                    <td>{{$appointment->date}}</td>
-                                    <td>{{$appointment->time}}</td>
-                                    <td>{{$appointment->status}}</td>
+                                    <td>{{$appointment->date }}</td>
+                                    <td>{{$appointment->time }}</td>
+                                    <td>
+                                        <span class="badge badge-{{ $appointment->status_badge }}">{{ $appointment->status }}</span>
+                                    </td>
                                     <td>{{$appointment->note}}</td>
                                     <td>
-                                        <a href="">
+                                        <a href="{{ route('admin.appointments.edit', $appointment) }}">
                                             <i class="fa fa-edit mr-2"></i>
                                         </a>
                                         <a href="">
