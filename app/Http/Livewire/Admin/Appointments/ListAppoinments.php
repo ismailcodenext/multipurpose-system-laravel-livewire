@@ -11,6 +11,8 @@ class ListAppoinments extends Component
 
     public $appointment;
 
+    public $searchTerm = null;
+
     public $appointmentIdBeingRemoved = null;
 
     public function confirmAppointmentRemoval($appointmentId)
@@ -28,7 +30,12 @@ class ListAppoinments extends Component
     }
     public function render()
     {
-        $appointments = Appointments::with('client')->latest()->paginate(20);
+
+        $appointments = Appointments::query()
+            ->where('status', 'like', '%'.$this->searchTerm.'%')
+            ->orWhere('note', 'like', '%'.$this->searchTerm.'%')
+            ->latest()->paginate(20);
+
         return view('livewire.admin.appointments.list-appoinments', [
             'appointments' => $appointments,
         ]);

@@ -33,14 +33,17 @@
                                 <option value="100"> 100</option>
                             </select>
                         </div>
-
+                        <div wire:loading wire:target="userList">
+                            Loading...
+                        </div>
                         <div class="col-md-4 d-flex justify-content-end">
                             <input wire:model="search" type="search" class="form-control mx-2">
                         </div>
 
                         <div class="col-md-4 d-flex justify-content-end">
                             <button wire:click.prevent="addNew"
-                                    class="btn btn-primary  btn-sm px-2"><i class="fa fa-plus-circle mr-2"></i> Add New User
+                                    class="btn btn-primary  btn-sm px-2"><i class="fa fa-plus-circle mr-2"></i> Add New
+                                User
                             </button>
                         </div>
                     </div>
@@ -63,7 +66,10 @@
                                 @foreach($users as $user)
                                     <tr>
                                         <th scope="row">{{$loop->iteration}}</th>
-                                        <td>{{$user->name}}</td>
+                                        <td>
+                                            <img src="{{ $user->avatar_url }}" style="width: 50px; height: 50px;" class="img img-circle" alt="">
+                                            {{$user->name}}
+                                        </td>
                                         <td>
 
                                             @foreach($user->clients as $client)
@@ -163,6 +169,27 @@
                                 {{ $message }}
                             </div>
                             @enderror
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="customFile">Profile Photo</label>
+                            @if ($photo)
+                                <img src="{{ $photo->temporaryUrl() }}" class="img img-circle d-block mb-2" style="width: 50px" alt="">
+                            @else
+                                <img src="{{$state['avatar_url'] ?? '' }}" class="img img-circle d-block mb-2" style="width: 50px" alt="">
+                            @endif
+
+                            <div class="custom-file">
+                                <input wire:model="photo" type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">
+                                    @if ($photo)
+                                        {{ $photo->getClientOriginalName() }}
+                                    @else
+                                        Choose Image
+                                    @endif
+                                </label>
+                            </div>
                         </div>
 
                     </div>

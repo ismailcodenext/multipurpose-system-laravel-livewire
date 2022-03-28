@@ -19,11 +19,14 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="d-flex justify-content-end mb-2">
+                    <div class="d-flex justify-content-between mb-2">
                         <a href="{{route('admin.appointments.create')}}">
                             <button class="btn btn-primary"><i class="fa fa-plus-circle mr-1"></i> Add New Appointment
                             </button>
                         </a>
+                        <div>
+                            <input wire:model="searchTerm" type="text" class="form-control" placeholder="Search">
+                        </div>
                     </div>
                     <div class="card">
                         <div class="card-body">
@@ -41,7 +44,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($appointments as $appointment)
+                                @forelse($appointments as $appointment)
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
                                     <td>{{$appointment->client->name}}</td>
@@ -60,7 +63,17 @@
                                         </a>
                                     </td>
                                 </tr>
-                                @endforeach
+                                @empty
+                                    <tr class="text-center">
+
+                                        <td colspan="7">
+                                            <img src="{{ asset('backend/dist/img/undraw_Searching_re_3ra9.png') }}" style="height: 100px; width:100px;">
+                                            <p class="mt-2">No Result Found.</p>
+
+                                        </td>
+
+                                    </tr>
+                                @endforelse
                                 </tbody>
                             </table>
 
